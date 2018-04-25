@@ -1,7 +1,4 @@
 $(document).ready(function() {
-	$("#questionnaire").on("click",".addReponse", function(){
-		$('#send').before('<input type="text" placeholder="mauvaise reponse" name="reponse" class="reponse"/>');
-	});
 	
 	$('#type').change(function() {
 	    var type = $('#type option:selected').val();

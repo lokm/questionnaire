@@ -12,32 +12,28 @@ public class AddCategory extends Action {
 
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
-if(request.getMethod().equals("POST")) {
+		if (request.getMethod().equals("POST")) {
 			Category category = new Category(
-					request.getParameter("titre_categorie"),
-					request.getParameter("color")			
-			);
-		
-			EntityManager em = JpaUtil.getEntityManager();	
-			
-		
+					request.getParameter("titre_categorie"), 
+					request.getParameter("color")
+					);
 
-		try{
-			em.getTransaction().begin();
-			em.persist(category);
-		
-			em.getTransaction().commit();
-		} catch (RollbackException e) {
-			em.getTransaction().rollback();
-			e.printStackTrace();
+			EntityManager em = JpaUtil.getEntityManager();
+
+			try {
+				em.getTransaction().begin();
+				em.persist(category);
+
+				em.getTransaction().commit();
+			} catch (RollbackException e) {
+				em.getTransaction().rollback();
+				e.printStackTrace();
+			}
+			em.close();
+
+			return true;
 		}
-		em.close();
-		
-		 return true;
-		}
-			return false;
-		} 
-	
+		return false;
+	}
+
 }
-
-

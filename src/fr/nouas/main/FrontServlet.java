@@ -27,8 +27,8 @@ public class FrontServlet extends HttpServlet {
     public FrontServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* TODO: faire une modification */
 		
-
 		
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);
@@ -70,46 +70,47 @@ public class FrontServlet extends HttpServlet {
 
 		
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);
-		
+
 		if (redirect) {
-		
+
 			response.sendRedirect(request.getContextPath() + "/home");
 		} else {
 			System.out.println("dans le switch: " + actionName);
-			switch(actionName)
-			{
+			switch (actionName) {
 			case "questionnaire":
-				
-				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+
+				response.sendRedirect(request.getContextPath() + "/questionnaire?" + request.getQueryString());
 				break;
 			case "addQuestion":
-				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+				response.sendRedirect(request.getContextPath() + "/questionnaire?" + request.getQueryString());
 
 				System.out.println("dans le case addquestion");
 				break;
 			case "checkReponse":
-				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+				response.sendRedirect(request.getContextPath() + "/questionnaire?" + request.getQueryString());
 
 				System.out.println("dans le case addquestion");
 				break;
-			
+
 			case "editQuestion":
 				System.out.println("dans le case editQuestion");
-				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
-				
-			break;
+				response.sendRedirect(request.getContextPath() + "/questionnaire?"
+						+ request.getQueryString().substring((request.getQueryString().lastIndexOf("&") + 1)));
+
+				break;
 
 			}
 		}
 	}
-	
+
 	private String getActionName(HttpServletRequest req) {
 		String uri = req.getRequestURI();
-		uri = uri.substring(uri.lastIndexOf("/") + 1); 
+		uri = uri.substring(uri.lastIndexOf("/") + 1);
 		return uri;
 	}
 	

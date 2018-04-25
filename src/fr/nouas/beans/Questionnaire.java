@@ -19,45 +19,39 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Questionnaire {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(length=150, nullable=false)
+
+	@Column(length = 150, nullable = false)
 	private String name;
-	
-	@Column(length=150, nullable=true)
+
+	@Column(length = 150, nullable = true)
 	private int version;
-	
-	@Column(length=150, nullable=true)
+
+	@Column(length = 150, nullable = true)
 	private String description;
 
-	
-	@JoinTable(
-			name="questionnaires_users",
-			joinColumns=@JoinColumn(name="questionnaire_id", referencedColumnName="id",foreignKey=@ForeignKey(name="fk_questionnaire")),
-			inverseJoinColumns=@JoinColumn(name="user_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_user")))
-			
+	@JoinTable(name = "questionnaires_users", 
+			joinColumns = @JoinColumn(name = "questionnaire_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_questionnaire")), 
+			inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_user")))
 	@ManyToMany
-	private List <User> users = new ArrayList <User>();
+	private List<User> users = new ArrayList<User>();
 
-	@OneToMany(fetch = FetchType.EAGER, cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy="questionnaire", orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.REMOVE,
+			CascadeType.PERSIST }, mappedBy = "questionnaire", orphanRemoval = true)
+	private List<Question> questions;
 
-	private List <Question> questions;
-	
-	
-	
-	@OneToMany(cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy="questionnaire", orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy = "questionnaire", orphanRemoval = true)
+	private List<Reponse> reponses;
 
-	private List <Reponse> reponses;
-	
 	@ManyToOne
 	private Category category;
-	
 
-	public Questionnaire () {};
-	
+	public Questionnaire() {
+	};
+
 	public Questionnaire(int id, String name, List<Question> questions, Category category) {
 		super();
 		this.id = id;
@@ -65,32 +59,30 @@ public class Questionnaire {
 		this.questions = questions;
 		this.category = category;
 	}
-	
+
 	public Questionnaire(String name, String description, Category category) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.category = category;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
-	
-	
+
 	public List<User> getUsers() {
 		return users;
 	}
-	
+
 	public void addUser(User user) {
 		this.users.add(user);
 	}
-	
+
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-	
+
 	public int getVersion() {
 		return version;
 	}
@@ -122,9 +114,11 @@ public class Questionnaire {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
+
 	public void addQuestion(Question question) {
 		this.questions.add(question);
 	}
+
 	public void deleteQuestion(Question question) {
 		this.questions.remove(question);
 	}
@@ -144,5 +138,5 @@ public class Questionnaire {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }

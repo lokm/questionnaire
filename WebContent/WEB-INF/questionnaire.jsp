@@ -86,7 +86,7 @@
 
 
 
-					<c:if test="${user.role == 'admin' }">
+					<c:if test="${user.role == 'admin' || user.role == 'superAdmin' }">
 						
 						<%-- <a
 							href='<c:url value="questionnaire?newUser=true&questionnaire=${questionnaire.id}" />'>Retour

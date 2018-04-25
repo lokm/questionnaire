@@ -71,12 +71,8 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 		actions.put(ACTION_LOG_OUT, new LogOut());
 		actions.put(ACTION_DELETE_QUESTION, new DeleteQuestion());
 		actions.put(ACTION_VALID_QUESTIONNAIRE, new ValidQuestionnaire());
-
 		actions.put(ACTION_CHECK_REPONSE, new CheckReponse ());
 		actions.put(ACTION_CHECK_PROFIL, new CheckProfil ());
-		
-		
-
 	}
 
 	public static Action getAction(String actionName) { // c la que en fonction de laction (string) envoyer par la
