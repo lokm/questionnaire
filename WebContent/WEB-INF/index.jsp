@@ -136,7 +136,7 @@
 										varStatus="theCount">
 
 										<c:if test="${userquestionnaire.id == user.id}">
-											<h4>Questionnaire Effectué</h4>
+											<h4>Questionnaire Effectu&eacute;</h4>
 
 										</c:if>
 

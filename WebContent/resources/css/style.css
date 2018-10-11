@@ -38,6 +38,7 @@ input[type="submit"], input[type="button"] {
 	font-weight:bold;
 	font-family: 'Lato', sans-serif;
 	height:2em;
+	cursor:pointer;
 }
 section {
 	text-align:center;

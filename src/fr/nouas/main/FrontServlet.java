@@ -27,9 +27,7 @@ public class FrontServlet extends HttpServlet {
     public FrontServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* TODO: faire une modification */
-		
-		
+	
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);
 		System.out.println("action name : " + actionName);
@@ -72,7 +70,8 @@ public class FrontServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		String userId = request.getParameter("userID");
+		System.out.println("user ID : " + userId);
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);
 
