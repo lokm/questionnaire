@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
+
+<Valve className="org.apache.catalina.valves.rewrite.RewriteValve"/>
 <Resource
-      	name="jdbc/Nouas"
+      	name="jdbc/questionnaire"
         type="javax.sql.DataSource"
-		username="drius759"
-		password="potter759"
+		username="root"
+		password=""
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/nouas"              
+		url="jdbc:mysql://localhost:3306/questionnaire"
 		maxTotal="100"
 		maxWaitMillis="10000"
-		MaxIdle="30" />
+		/>
+
 </Context>
